@@ -1,1 +1,15 @@
 # openthos-testing
+
+## 项目目标
+
+实现openthos的全自动测试和分析，并形成完善的帮助文档。
+
+## 项目目录描述
+
+doc目录
+
+OpenthosAutocompile2016.md openthos的自动编译帮助文档
+
+Openthos4Qemu2016.md qemu环境下的自动测试帮助文档
+
+Openthos4H170pro2016.md 真实机器H170pro上的自动测试帮助文档
