@@ -8,7 +8,7 @@
 
 doc目录
 
-OpenthosAutocompile2016.md openthos的自动编译帮助文档
+[OpenthosAutocompile2016.md](https://github.com/xyongcn/openthos-testing/blob/master/doc/Openthos4H170pro2016.md) openthos的自动编译帮助文档
 
 Openthos4Qemu2016.md qemu环境下的自动测试帮助文档
 
