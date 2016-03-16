@@ -3,7 +3,11 @@
 使用Ubuntu 15.10 amd64版本
 
 ##翻墙
-服务器使用lantern软件翻墙
+服务器使用lantern软件翻墙，输入以下命令配置翻墙代理  
+```
+export http_proxy=127.0.0.1:8787
+export https_proxy=127.0.0.1:8787
+```
 
 ##安装必要软件
 参考[官方文档](http://source.android.com/source/initializing.html)，编译6.0需要openjdk8，然后安装repo
@@ -12,11 +16,6 @@
 ```
 mkdir android-repo
 cd android-repo
-```
-配置翻墙代理  
-```
-export http_proxy=127.0.0.1:8787
-export https_proxy=127.0.0.1:8787
 repo init -u git://gitscm.sf.net/gitroot/android-x86/manifest -b marshmallow-x86 #6.0代号为marshmallow
 repo sync
 ```
