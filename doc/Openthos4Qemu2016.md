@@ -30,3 +30,6 @@ qemu-system-x86_64 -enable-kvm -m 4G -cdrom android_x86.iso -vga std -serial std
 ```
 qemu-system-x86_64 -enable-kvm -m 4G -vga std -serial stdio -hda android.img
 ```
+
+###开机自动运行脚本
+将img文件转成raw格式，挂载到系统上，在/system/etc/init.sh文件的return 0前面加入自动执行的语句即可。  
