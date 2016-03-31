@@ -27,7 +27,7 @@ esp分区为/dev/sda4</br>
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
 ssh-keygen  
-ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc2的ip地址]  
+ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc1的ip地址]  
 
 1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC2上的/root/目录下面   
 2.  以root登录    
