@@ -9,7 +9,7 @@ ip_android="192.168.2.34"
 
 
 ###only install one time. ###mybe fix install many times
-./android_tool.sh ${ip_linux} android_x86_uefi_install.sh
+##./android_tool.sh ${ip_linux} android_x86_uefi_install.sh
 
 
 ################
@@ -35,7 +35,7 @@ echo ${ip_android}
 
 
 
-./adb install ./fndxn2_yoyou.com.apk
+#./adb install ./fndxn2_yoyou.com.apk
 ./adb install ./net.jishigou.t2.8.0.pak
 ./adb shell am start -n net.jishigou.t/net.jishigou.t.StartActivity
 #./adb push  ./xxx/x   /x/x/x/
