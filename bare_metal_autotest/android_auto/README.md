@@ -21,12 +21,14 @@ PC2为是存放程序和数据的地方，用于远程控制PC1
 以UEFI形式安装ubuntu到/dev/sda1</br>
 esp分区为/dev/sda4</br>
 划分10G左右分区/dev/sda2,并格式为ext4用于安装android  
-2.  在ubuntu部署ssh无密码登录  
+
+
+##PC2初始化环境
+1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
 ssh-keygen  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc2的ip地址]  
 
-##PC2初始化环境
 1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC2上的/root/目录下面   
 2.  以root登录    
 3.  cd /root/android_auto  
