@@ -21,6 +21,7 @@ PC2为是存放程序和数据的地方，用于远程控制PC1
 以UEFI形式安装ubuntu到/dev/sda1</br>
 esp分区为/dev/sda4</br>
 划分10G左右分区/dev/sda2,并格式为ext4用于安装android  
+2. 把PC1启动到linux，等待接收PC2的测试指令
 
 
 ##PC2初始化环境
@@ -41,4 +42,6 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc1的ip地址]
 3.  运行 
 ./android_auto.sh进行一轮自动化测试  
 根据提示输入ip_linux即PC1上面的linuxOS对应的IP地址  
-根据提示输入ip_android即PC1上面的androidOS对应的IP地址  
+根据提示输入ip_android即PC1上面的androidOS对应的IP地址
+4.  android_auto.sh是一个测试过程的举例，例如重装android系统,启动到android，安装一个apk,启动apk,重启android
+    本测试框架只提供机制不提供策略，如果要加新的测试过程，只需要仿照android_auto.sh脚本进行修改即可。
