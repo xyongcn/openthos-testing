@@ -29,8 +29,7 @@ esp分区为/dev/sda4</br>
 ssh-keygen  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc1的ip地址]  
 
-1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC2上的/root/目录下面   
-2.  以root登录    
+1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC2上的/root/目录下面
 3.  cd /root/android_auto  
 4.  只执行一次./android_tool.sh ${ip_linux} android_x86_uefi_install.sh  
 其中${ip_linux}替换为PC1的IP地址
