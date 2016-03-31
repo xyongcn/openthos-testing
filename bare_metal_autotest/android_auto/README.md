@@ -43,5 +43,5 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc1的ip地址]
 ./android_auto.sh进行一轮自动化测试  
 根据提示输入ip_linux即PC1上面的linuxOS对应的IP地址  
 根据提示输入ip_android即PC1上面的androidOS对应的IP地址
-4.  android_auto.sh是一个测试过程的举例，例如重装android系统,启动到android，安装一个apk,启动apk,重启android
-    本测试框架只提供机制不提供策略，如果要加新的测试过程，只需要仿照android_auto.sh脚本进行修改即可。
+4.  android_auto.sh是一个测试过程的举例，例如重装android系统,启动到android，安装一个apk,启动apk,测试用例自己记录测试中间结果到约定目录，重启android,测试完毕。
+5.  本测试框架只提供机制不提供策略，如果要加新的测试过程，只需要仿照android_auto.sh脚本进行修改即可。
