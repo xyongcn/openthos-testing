@@ -7,7 +7,7 @@ qemu-system-x86_64 -enable-kvm -m 4G -cdrom android_x86.iso -vga std -serial std
 ###安装模式
 参考[在QEMU上运行](http://www.android-x86.org/documents/qemuhowto)和[在virtualbox上运行](http://www.android-x86.org/documents/virtualboxhowto#Advanced)的官方文档，创建一个磁盘镜像
 ```
-qemu-img create -f qcow2 android.img 8G
+qemu-img create -f raw android.img 8G
 qemu-system-x86_64 -enable-kvm -m 4G -cdrom android_x86.iso -vga std -serial stdio -hda android.img -boot d
 ```
 进入debug mode  
@@ -32,4 +32,10 @@ qemu-system-x86_64 -enable-kvm -m 4G -vga std -serial stdio -hda android.img
 ```
 
 ###开机自动运行脚本
-将img文件转成raw格式，挂载到系统上，在/system/etc/init.sh文件的return 0前面加入自动执行的语句即可。  
+将img文件，挂载到系统上，在/system/etc/init.sh文件的return 0前面加入自动执行的语句即可。  
+
+###自动拷贝文件脚本
+见copy.sh  
+`fdisk -l android.raw`  
+查看扇区情况，假设第一个扇区的起点是63，计算出63×512=32256，要挂载到/home/cscw/mnt1，欲拷贝文件为kernel，拷贝到/home/cscw/mnt1/android-2016-02-29/kernel，则以如下命令执行脚本  
+`./copy.sh android.raw 32256 /home/cscw/mnt1 kernel android-2016-02-29/kernel`
