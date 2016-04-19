@@ -39,3 +39,5 @@ qemu-system-x86_64 -enable-kvm -m 4G -vga std -serial stdio -hda android.img
 `fdisk -l android.raw`  
 查看扇区情况，假设第一个扇区的起点是63，计算出63×512=32256，要挂载到/home/cscw/mnt1，欲拷贝文件为kernel，拷贝到/home/cscw/mnt1/android-2016-02-29/kernel，则以如下命令执行脚本  
 `./copy.sh android.raw 32256 /home/cscw/mnt1 kernel android-2016-02-29/kernel`
+
+`kvm -m 4G -hda android-x86-6.0.1.raw -net nic -net user,hostfwd=tcp::12346-:5555`端口转发adb
