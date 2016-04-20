@@ -7,7 +7,7 @@
 cd ~/android_auto 
 umount /boot/efi
 #mount /dev/{sda7} /boot/efi
-mount /dev/sda4 /boot/efi
+mount /dev/sda1 /boot/efi
 
 rm -rf /boot/efi/boot
 rm -rf  /boot/efi/EFI/android_boot
@@ -19,5 +19,5 @@ cp -R  ./android_boot  /boot/efi/EFI
 
 
 #efibootmgr -c -d /dev/{sda} -p  {1}  -l  \\EFI\\android_boot\\grubX64.efi  -L  android_x86
-efibootmgr -c -d /dev/sda -p  4  -l  \\EFI\\android_boot\\grubX64.efi  -L  android_x86
+efibootmgr -c -d /dev/sda -p  1  -l  \\EFI\\android_boot\\grubX64.efi  -L  android_x86
 ### -p 参数应该和esp相对应  /dev/sda1
