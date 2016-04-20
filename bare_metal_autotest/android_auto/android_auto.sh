@@ -19,14 +19,14 @@ ip_android="192.168.2.34"
 
 #######通过web 上传测试用例还有测试材料。
 
-read -p "please input the ip_linux" ip_linux
+read -p "please input the ip_linux:" ip_linux
 echo ${ip_linux}
 
 ./android_tool.sh ${ip_linux} android_x86_iso_install.sh
 ./android_tool.sh ${ip_linux} fastboot.sh reboot
 
 ##test ip  reacheable
-read -p "please input the ip_android" ip_android
+read -p "please input the ip_android:" ip_android
 ####pause press anykey to continue
 echo ${ip_android}
 
@@ -36,7 +36,7 @@ echo ${ip_android}
 
 
 #./adb install ./fndxn2_yoyou.com.apk
-./adb install ./net.jishigou.t2.8.0.pak
+./adb install ./net.jishigou.t2.8.0.apk
 ./adb shell am start -n net.jishigou.t/net.jishigou.t.StartActivity
 #./adb push  ./xxx/x   /x/x/x/
 #./adb shell /x/x/x/x
