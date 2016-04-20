@@ -7,8 +7,8 @@ qemu-system-x86_64 -enable-kvm -m 4G -cdrom android_x86.iso -vga std -serial std
 ###安装模式
 参考[在QEMU上运行](http://www.android-x86.org/documents/qemuhowto)和[在virtualbox上运行](http://www.android-x86.org/documents/virtualboxhowto#Advanced)的官方文档，创建一个磁盘镜像
 ```
-qemu-img create -f raw android.img 8G
-qemu-system-x86_64 -enable-kvm -m 4G -cdrom android_x86.iso -vga std -serial stdio -hda android.img -boot d
+qemu-img create -f raw android.raw 8G
+qemu-system-x86_64 -enable-kvm -m 4G -cdrom android_x86.iso -vga std -serial stdio -hda android.raw -boot d
 ```
 进入debug mode  
 
@@ -28,7 +28,7 @@ qemu-system-x86_64 -enable-kvm -m 4G -cdrom android_x86.iso -vga std -serial std
 
 安装完成后，关闭qemu，重新运行
 ```
-qemu-system-x86_64 -enable-kvm -m 4G -vga std -serial stdio -hda android.img
+qemu-system-x86_64 -enable-kvm -m 4G -vga std -serial stdio -drive file=android-x86-6.0.raw,format=raw,index=0,media=disk
 ```
 
 ###开机自动运行脚本
@@ -40,4 +40,7 @@ qemu-system-x86_64 -enable-kvm -m 4G -vga std -serial stdio -hda android.img
 查看扇区情况，假设第一个扇区的起点是63，计算出63×512=32256，要挂载到/home/cscw/mnt1，欲拷贝文件为kernel，拷贝到/home/cscw/mnt1/android-2016-02-29/kernel，则以如下命令执行脚本  
 `./copy.sh android.raw 32256 /home/cscw/mnt1 kernel android-2016-02-29/kernel`
 
-`kvm -m 4G -hda android-x86-6.0.1.raw -net nic -net user,hostfwd=tcp::12346-:5555`端口转发adb
+###通过端口转发使用adb连接kvm中的安卓系统
+使用以下命令将客户机的5555端口也就是adb要连接的端口转发到主机的12346端口  
+`kvm -m 4G -drive file=android-x86-6.0.raw,format=raw,index=0,media=disk-net nic -net user,hostfwd=tcp::12346-:5555`  
+然后就可以`adb connect localhost:12346`连接到kvm中的安卓系统了   
