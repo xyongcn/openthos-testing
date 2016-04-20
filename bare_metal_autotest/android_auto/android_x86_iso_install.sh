@@ -15,5 +15,5 @@ cp  ./android_mnt/ramdisk.img    .
 cp  ./android_mnt/system.img     .
 umount ./android_mnt
 #mkfs.ext4 /dev/{sda3}
-mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/sda4
 ./fastboot.sh  flashall
