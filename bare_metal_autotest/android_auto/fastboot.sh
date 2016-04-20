@@ -9,7 +9,7 @@ cd  ~/android_auto
 mkdir ./android_disk
 umount ./android_disk
 #mount /dev/{sda3}   ./android_disk
-mount /dev/sda2   ./android_disk
+mount /dev/sda4   ./android_disk
 
 #mkdir  ./android_disk/{android-2016-02-29}/
 mkdir  ./android_disk/android-2016-02-29/
