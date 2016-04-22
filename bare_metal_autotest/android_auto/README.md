@@ -3,7 +3,7 @@
 ##测试对象说明
 * PC1  
 PC1为测试对象,上安装了linux和android_x86双系统  
-PC1上面的linuxOS安装到了/dev/sda1, android 安装到了/dev/sda4,ESP分区为/dev/sda1,测试程序中的参数也是这么设定的(见原理图)。如果想变换分区，需要修改*.sh中对应的参数，程序注释中也给出了提示。   
+PC1上面的linuxOS安装到了/dev/sda2, android 安装到了/dev/sda4,ESP分区为/dev/sda1,测试程序中的参数也是这么设定的(见原理图)。如果想变换分区，需要修改*.sh中对应的参数，程序注释中也给出了提示。   
 * PC2  
 PC2为是存放程序和数据的地方，用于远程控制PC1   
 使用rsync可以方便的同步脚本和数据，而且是增量的  
@@ -18,9 +18,9 @@ PC2为是存放程序和数据的地方，用于远程控制PC1
 1.  安装64位ubuntu（14.04及以上）  
 在UEFI中关闭cms选项，即把传统的BIOS功能关掉，只使用uefi模式</br>
 硬盘分区必须是gpt格式</br>
-以UEFI形式安装ubuntu到/dev/sda1</br>
-esp分区为/dev/sda4</br>
-划分10G左右分区/dev/sda2,并格式为ext4用于安装android  
+以UEFI形式安装ubuntu到/dev/sda2</br>
+esp分区为/dev/sda1</br>
+划分10G左右分区/dev/sda4,并格式为ext4用于安装android  
 2. 把PC1启动到linux，等待接收PC2的测试指令
 
 
