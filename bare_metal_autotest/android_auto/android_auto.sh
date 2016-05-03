@@ -45,7 +45,7 @@ echo ${ip_android}
 
 #tar zcvf ./test_result ./test_result.tar.gz  #通过web下载测试用例。
 #rm -rf ./test_result
-
+sleep 10
 
 ./adb reboot
 
