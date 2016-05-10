@@ -14,4 +14,6 @@ arg_s=${@:2}
 echo ${@:2}
 #rsync  --delete  -avz -e ssh ~/android_auto/   root@${rip}:~/android_auto/
 rsync   -avz -e ssh ~/android_auto/   root@${rip}:~/android_auto/
+sleep 8
 ssh root@${rip} "~/android_auto/${arg_s}"
+sleep 2
