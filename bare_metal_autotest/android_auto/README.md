@@ -13,7 +13,8 @@ ip_linux="192.168.2.16"【PC1的IP地址】
 ip_android="192.168.2.58"【PC1上面的android IP地址】  
 
 * 特点：
- 1. 模拟了android 中的fastboot功能，参数也很相似，通用于测试android手机设备。  
+ 1. 【fastboot for androidx86】模拟了android 中的fastboot功能，参数也很相似，通用于测试android手机设备。  
+ 2. 【kickstart for androidx86】利用kickstart的无人值守安装机制，结合【fastboot for androidx86】实现了androidx86在baremetal下面的无人值守安装。
  2. 使用rsync可以方便的同步脚本和数据，而且是增量的，而且可执行权限也不需要加，由于是镜像的，所以排错很容易。本地测试远程测试都很方便 
  3. 一份代码，只需要修改配置文件，即可同时应用于远程控制多台设备。  
 
