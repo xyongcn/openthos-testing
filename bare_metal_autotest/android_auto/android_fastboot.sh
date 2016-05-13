@@ -35,5 +35,7 @@ sleep 3
 
 sleep 3
 
-./adb reboot
+./adb reboot &
+sleep 2
+pkill adb
 ###adb reboot can not normal exit, must ctrl+c, game over 
