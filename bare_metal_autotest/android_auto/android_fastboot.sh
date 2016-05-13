@@ -38,4 +38,4 @@ sleep 3
 ./adb reboot &
 sleep 2
 pkill adb
-###adb reboot can not normal exit, must ctrl+c, game over 
+###adb reboot can not normal exit, must ctrl+c, game over ,use & and pkill fix it
