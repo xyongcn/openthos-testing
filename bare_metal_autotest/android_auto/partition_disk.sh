@@ -26,6 +26,8 @@ sleep 3
 
 partprobe
 
+sleep 2
+
 #mkfs.ext4 {/dev/sda4}
 mkfs.ext4  $tmp <<EOF
 y
