@@ -21,15 +21,11 @@ ssh root@${ip_linux} "rm -rf /root/android_auto/"
 
 ./android_tool.sh ${ip_linux}  partition_disk.sh ${diskpart_for_android}
 
-./android_tool.sh ${ip_linux}  fastboot.sh  ${diskpart_for_android}  reboot_bootloader
+###after partion_disk.sh need not reboot to mkfs.ext4
+##./android_tool.sh ${ip_linux}  fastboot.sh  ${diskpart_for_android}  reboot_bootloader
 
-###when reboot is ok?
-sleep 120
-##read -p "reboot is ok?" reboot_ok
-echo ${reboot_ok}
 
 ./android_tool.sh ${ip_linux}  android_x86_iso_install.sh ${diskpart_for_android} 
-
 
 ./android_tool.sh ${ip_linux}  android_x86_grub_install.py ${diskpart_for_android} 
 
@@ -37,8 +33,7 @@ echo ${reboot_ok}
 
 
 
-
-###when  the android  boot sucess?
+###when  the android  boot success?
 ##test ip  reacheable
 ###
 #while  1
