@@ -26,5 +26,7 @@ sleep 3
 
 partprobe
 
-mkfs.ext4 {/dev/sda4}
-mkfs.ext4  $tmp
+#mkfs.ext4 {/dev/sda4}
+mkfs.ext4  $tmp <<EOF
+y
+EOF
