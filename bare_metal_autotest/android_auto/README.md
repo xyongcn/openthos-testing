@@ -31,10 +31,29 @@ ip_android="192.168.2.58"【PC1上面的android IP地址】
 以UEFI形式安装ubuntu到/dev/sda2</br>
 esp分区为/dev/sda1</br>
 auto2.sh程序会根据配置参数自动创建10G的分区，用于安装androidx86  
-apt-get install squashfs-tools【安装 squashfs-tools】  
-apt-get install openssh-server
 
-2. 把PC1启动到linux，等待接收PC2的测试指令
+
+2.
+修改root密码
+sudo su   
+passwd  
+
+3.
+apt-get install squashfs-tools【安装 squashfs-tools】    
+apt-get install openssh-server  
+
+4.修改ssh root登录
+vi /etc/ssh/sshd_config  
+修改其中的  
+PermitRootLogin without-password  
+或者  
+PermitRootLogin prohibit-password  
+为  
+PermitRootLogin yes  
+
+然后执行  
+service ssh restart  
+ 5. 把PC1启动到linux，等待接收PC2的测试指令
 
 
 ##PC2初始化环境
