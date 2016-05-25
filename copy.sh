@@ -4,5 +4,5 @@
 #$3 path to mount
 #$4 file to copy
 #$5 relative path to mount directory
-sudo mount $5 -o loop,offset=$4 $2
-sudo cp $1 $2/$3
+sudo mount $1 -o loop,offset=$2 $3
+sudo cp $4 $3/$5
