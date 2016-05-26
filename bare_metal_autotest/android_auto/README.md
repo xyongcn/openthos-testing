@@ -24,8 +24,8 @@ ip_android="192.168.2.58"【PC1上面的android IP地址】
 
 ##PC1初始化环境
 
-
-1.  安装64位ubuntu（要求15.10及以上，因为14.04以前的版本中fdisk不支持操作gpt格式的磁盘）  
+1.  对于机箱前面板上有SD读卡器的台式机，需要打开机箱，从主板上拔掉SD卡读卡器的USB，否则会造成grub中硬盘编号为hd1，使得androidx86引导失败  
+2.  安装64位ubuntu（要求15.10及以上，因为14.04以前的版本中fdisk不支持操作gpt格式的磁盘）  
 在UEFI中关闭cms选项，即把传统的BIOS功能关掉，只使用uefi模式</br>
 硬盘分区必须是gpt格式</br>
 以UEFI形式安装ubuntu到/dev/sda2</br>
@@ -42,7 +42,7 @@ passwd
 apt-get install squashfs-tools【安装 squashfs-tools】    
 apt-get install openssh-server  
 
-4.修改ssh root登录
+4.修改ssh root登录 
 vi /etc/ssh/sshd_config  
 修改其中的  
 PermitRootLogin without-password  
@@ -53,7 +53,7 @@ PermitRootLogin yes
 
 然后执行  
 service ssh restart  
- 5. 把PC1启动到linux，等待接收PC2的测试指令
+5. 把PC1启动到linux，等待接收PC2的测试指令
 
 
 ##PC2初始化环境
