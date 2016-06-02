@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-
+cd "$(dirname "$0")" 
 
 ip_linux="192.168.2.16"
 ip_android="192.168.2.34"

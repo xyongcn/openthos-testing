@@ -4,7 +4,7 @@
 #android_x86_uefi_install.sh
 #可以在本地进行测试
 #########################################
-cd ~/android_auto 
+cd "$(dirname "$0")" 
 umount /boot/efi
 #mount /dev/{sda7} /boot/efi
 mount /dev/sda1 /boot/efi

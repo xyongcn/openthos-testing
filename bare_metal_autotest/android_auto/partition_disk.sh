@@ -1,5 +1,5 @@
 #!/bin/bash -x
-
+cd "$(dirname "$0")"
 echo $1
 tmp=$1
 

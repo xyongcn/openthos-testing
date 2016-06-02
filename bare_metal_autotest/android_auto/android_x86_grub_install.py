@@ -1,6 +1,14 @@
 #!/usr/bin/python
 import os
 import sys
+
+abc=os.path.dirname(__file__)
+print abc
+os.chdir(abc)
+print os.getcwd()
+
+
+
 in_file=open("/boot/grub/grub.cfg",'r')
 out_file=open("grub.cfg2",'w')
 

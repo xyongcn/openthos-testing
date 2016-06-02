@@ -3,7 +3,8 @@
 #      安装android_x86
 #android_x86_iso_install.sh
 #####################
-cd ~/android_auto
+#cd ~/android_auto
+cd "$(dirname "$0")"
 mkdir ./android_mnt
 sleep 2
 umount ./android_mnt

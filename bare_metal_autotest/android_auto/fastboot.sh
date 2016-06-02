@@ -3,7 +3,7 @@
 #
 #fastboot.sh
 #####################
-cd  ~/android_auto
+cd "$(dirname "$0")"
 
 
 mkdir ./android_disk

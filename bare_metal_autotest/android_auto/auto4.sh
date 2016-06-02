@@ -1,10 +1,7 @@
 #!/bin/bash -x
 
-cd "$(dirname "$0")" 
-CMPATH=`pwd`
-
-ip_linux="192.168.2.17"
-ip_android="192.168.2.21"
+ip_linux="192.168.2.82"
+ip_android="192.168.2.58"
 android_iso_for_test="/root/android_x86.iso_xly_5.1"
 diskpart_for_android="/dev/sda40"
 
@@ -17,9 +14,9 @@ echo ${ip_linux}
 
 cp  ${android_iso_for_test}  ./android_x86.iso
 
-#fixit
+
 ####a small bug has fixed
-ssh root@${ip_linux} "rm -rf ${CMPATH}/"
+ssh root@${ip_linux} "rm -rf /root/android_auto/"
 ####a small bug has fixed
 
 ./android_tool.sh ${ip_linux}  partition_disk.sh ${diskpart_for_android}
@@ -57,11 +54,11 @@ sleep 3
 
 
 #./adb install ./fndxn2_yoyou.com.apk
-./adb  -s ${ip_android}:5555  install ./net.jishigou.t2.8.0.apk
+./adb install ./net.jishigou.t2.8.0.apk
 
 sleep 3
 
-./adb -s ${ip_android}:5555  shell am start -n net.jishigou.t/net.jishigou.t.StartActivity
+./adb shell am start -n net.jishigou.t/net.jishigou.t.StartActivity
 
 #./adb push  ./xxx/x   /x/x/x/
 #./adb shell /x/x/x/x
