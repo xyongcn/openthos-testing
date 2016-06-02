@@ -1,9 +1,9 @@
 #!/bin/bash -x
 
-ip_linux="192.168.2.82"
-ip_android="192.168.2.58"
+ip_linux="192.168.2.88"
+ip_android="192.168.2.79"
 android_iso_for_test="/root/android_x86.iso_xly_5.1"
-diskpart_for_android="/dev/sda40"
+diskpart_for_android="/dev/sda43"
 
 
 ####this line can  be annotation 
@@ -54,11 +54,11 @@ sleep 3
 
 
 #./adb install ./fndxn2_yoyou.com.apk
-./adb install ./net.jishigou.t2.8.0.apk
+./adb  -s ${ip_android}:5555  install ./net.jishigou.t2.8.0.apk
 
 sleep 3
 
-./adb shell am start -n net.jishigou.t/net.jishigou.t.StartActivity
+./adb   -s ${ip_android}:5555  shell am start -n net.jishigou.t/net.jishigou.t.StartActivity
 
 #./adb push  ./xxx/x   /x/x/x/
 #./adb shell /x/x/x/x
