@@ -1,16 +1,16 @@
 # openthos在bare-metal上的自动测试
 
 ##测试对象，以及设计原理说明
-* PC1  
-PC1为测试对象,上面安装了linux和android_x86双系统  
-linux系统的作用跟android手机的fastboot功能是一样的，用来刷系统，或者更新系统中的一个分区。
-
- PC1上面的linuxOS安装到了/dev/sda2,android安装到了/dev/sda40【可以通过配置文件指定】,ESP分区为/dev/sda1,测试程序中的参数也是这么设定的(见原理图)。如果想变换分区，需要修改*.sh中对应的参数，程序注释中也给出了提示。   
 * PC2  
-PC2为是存放程序和数据的地方，用于远程控制PC1  
-而且可以通过修改auto2.sh配置文件中的以下两个参数达到控制多台设备的效果。不同的设备对应不同的IP地址。  
-ip_linux="192.168.2.16"【PC1的IP地址】  
-ip_android="192.168.2.58"【PC1上面的android IP地址】  
+* PC2为测试对象,上面安装了linux和android_x86双系统  
+   linux系统的作用跟android手机的fastboot功能是一样的，用来刷系统，或者更新系统中的一个分区。
+
+ PC2上面的linuxOS安装到了/dev/sda2,android安装到了/dev/sda40【可以通过配置文件指定】,ESP分区为/dev/sda1,测试程序中的参数也是这么设定的(见原理图)。如果想变换分区，需要修改*.sh中对应的参数，程序注释中也给出了提示。   
+* PC1  
+* PC1为是存放程序和数据的地方，用于远程控制PC2,PC3，PC4...  
+而且可以通过修改autoN.sh配置文件中的以下两个参数达到控制多台设备的效果。不同的设备对应不同的IP地址。  
+ip_linux="192.168.2.16"【PCN的IP地址】  
+ip_android="192.168.2.58"【PCN上面的android IP地址】  
 
 * 特点：
  1. 【fastboot for androidx86】模拟了android 中的fastboot功能，参数也很相似，通用于测试android手机设备。  
@@ -22,7 +22,7 @@ ip_android="192.168.2.58"【PC1上面的android IP地址】
 * 工作原理图  
 ![Aaron Swartz](https://raw.githubusercontent.com/xyongcn/openthos-testing/master/bare_metal_autotest/android_auto/android_x86%E7%9C%9F%E5%AE%9E%E6%9C%BA%E5%99%A8%E8%87%AA%E5%8A%A8%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6.JPG)
 
-##PC1初始化环境
+##PC2初始化环境
 
 1.  对于机箱前面板上有SD读卡器的台式机，需要打开机箱，从主板上拔掉SD卡读卡器的USB线，否则会造成grub中硬盘编号为hd1，使得androidx86引导失败  
 2.  安装64位ubuntu（要求15.10及以上，因为14.04以前的版本中fdisk不支持操作gpt格式的磁盘）  
@@ -53,21 +53,35 @@ PermitRootLogin yes
 
 然后执行  
 service ssh restart  
-5. 把PC1启动到linux，等待接收PC2的测试指令
+5. 把PC2启动到linux，等待接收PC1的测试指令
+6. PC3,4,5初始化方法同PC2
 
-
-##PC2初始化环境
+##PC1初始化环境
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
 ssh-keygen  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc1的ip地址]  
 
-1.  将git中bare_metal_autotest下面的android_auto/目录移动到PC2上的/root/目录下面
+1.  针对PC2测试准备将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
+例如/root/android_auto_2
+并且修改/root/android_auto_2/中的auto2.sh中的配置文件为PC1的配置情况
+进入/root/android_auto_2
+运行./auto2.sh
+
+1.  针对PC3测试准备将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
+例如/root/android_auto_3
+并且修改/root/android_auto_3/中的auto3.sh中的配置文件为PC3的配置情况
+进入/root/android_auto_3
+运行./auto3.sh
 
 
+1.  针对PC4,PC5等等并行测试，方法同PC1，PC3，都是复制一份android_auto/目录并重命名，新建测试策略文件autN.sh
+进入/root/android_auto_N
+运行./autoN.sh
 
-##PC2进行一轮自动化测试
-1.  cd /root/android_auto
+
+##以PC2举例，配置文件修改方法
+1.  cd /root/android_auto_2
 修改auto2.sh文件中的配置参数。  
 ip_linux="192.168.2.16"【PC1的IP地址】  
 ip_android="192.168.2.58"【PC1上面的android IP地址】  
