@@ -56,45 +56,62 @@ service ssh restart
 5. 把PC2启动到linux，等待接收PC1的测试指令
 6. PC3,4,5初始化方法同PC2
 
-##PC1初始化环境
+
+##PC2的自动化测试【在PC1上操作】
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
 ssh-keygen  
-ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc1的ip地址]  
+ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc2的ip地址]  
 
-1.  针对PC2测试准备将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
+1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
 例如/root/android_auto_2
-并且修改/root/android_auto_2/中的auto2.sh中的配置文件为PC1的配置情况
-进入/root/android_auto_2
+并且修改/root/android_auto_2/中的auto2.sh中的配置文件为PC2的配置情况
+ip_linux="192.168.2.16"【PC2的IP地址】  
+ip_android="192.168.2.58"【PC2上面的android IP地址】  
+android_iso_for_test="/root/android_x86.iso_xly_5.1"【要测试的androidx86  ISO的全路径及文件名】  
+diskpart_for_android="/dev/sda40"【PC2上面的要安装android的目标分区】  
+
+2. 提供要测试的ISO文件到android_iso_for_test参数指定的位置
+3. 进入/root/android_auto_2
 运行./auto2.sh
 
-1.  针对PC3测试准备将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
+##PC3的自动化测试【在PC1上操作】
+1.  在ubuntu部署ssh无密码登录  
+以root 登录，执行以下命令  
+ssh-keygen  
+ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc3的ip地址]  
+
+1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
 例如/root/android_auto_3
 并且修改/root/android_auto_3/中的auto3.sh中的配置文件为PC3的配置情况
+ip_linux="192.168.2.17"【PC3的IP地址】  
+ip_android="192.168.2.59"【PC3上面的android IP地址】  
+android_iso_for_test="/root/android_x86.iso_xly_5.1"【要测试的androidx86  ISO的全路径及文件名】  
+diskpart_for_android="/dev/sda40"【PC3上面的要安装android的目标分区】
+2. 提供要测试的ISO文件到android_iso_for_test参数指定的位置
 进入/root/android_auto_3
 运行./auto3.sh
 
 
-1.  针对PC4,PC5等等并行测试，方法同PC1，PC3，都是复制一份android_auto/目录并重命名，新建测试策略文件autN.sh
+##PCN(N>=2)的自动化测试【在PC1上操作】
+1.  在ubuntu部署ssh无密码登录  
+以root 登录，执行以下命令  
+ssh-keygen  
+ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pcN的ip地址]  
+
+1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
+例如/root/android_auto_N
+并且修改/root/android_auto_N/中的autoN.sh中的配置文件为PCN的配置情况
+ip_linux="192.168.2.17"【PCn的IP地址】  
+ip_android="192.168.2.59"【PCN上面的android IP地址】  
+android_iso_for_test="/root/android_x86.iso_xly_5.1"【要测试的androidx86  ISO的全路径及文件名】  
+diskpart_for_android="/dev/sda40"【PCN上面的要安装android的目标分区】
+2. 提供要测试的ISO文件到android_iso_for_test参数指定的位置
 进入/root/android_auto_N
 运行./autoN.sh
 
-
-##以PC2举例，配置文件修改方法
-1.  cd /root/android_auto_2
-修改auto2.sh文件中的配置参数。  
-ip_linux="192.168.2.16"【PC1的IP地址】  
-ip_android="192.168.2.58"【PC1上面的android IP地址】  
-android_iso_for_test="/root/android_x86.iso_xly_5.1"【要测试的androidx86  ISO的全路径及文件名】  
-diskpart_for_android="/dev/sda40"【PC1上面的要安装android的目标分区】  
-
-
-2. 提供要测试的ISO文件到android_iso_for_test参数指定的位置
-
-3.  运行 
-./auto2.sh进行一轮自动化测试
-
-4.  auto2.sh是一个测试过程的举例，
+##说明 
+4.  autoN.sh是一个测试过程的举例，
 演示了本目录中的各个脚本提供的服务如何使用。以及如何使用这些服务完成一个系统安装，app运行测试。
 例如重装android系统,启动到android，安装一个apk,启动apk,测试用例自己记录测试中间结果到约定目录，重启android,测试完毕。
 5.  本测试框架只提供机制不提供策略，如果要加新的测试过程，只需要仿照auto2.sh脚本进行修改即可。
