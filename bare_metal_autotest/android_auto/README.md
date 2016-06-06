@@ -26,11 +26,22 @@ ip_android="192.168.2.58"【PCN上面的android IP地址】
 
 1.  对于机箱前面板上有SD读卡器的台式机，需要打开机箱，从主板上拔掉SD卡读卡器的USB线，否则会造成grub中硬盘编号为hd1，使得androidx86引导失败  
 2.  安装64位ubuntu（要求15.10及以上，因为14.04以前的版本中fdisk不支持操作gpt格式的磁盘）  
-在UEFI中关闭cms选项，即把传统的BIOS功能关掉，只使用uefi模式</br>
-硬盘分区必须是gpt格式</br>
-以UEFI形式安装ubuntu到/dev/sda2</br>
-esp分区为/dev/sda1</br>
-auto2.sh程序会根据配置参数自动创建10G的分区，用于安装androidx86  
+首先要在UEFI中关闭cms选项，即把传统的BIOS功能关掉，只使用uefi模式</br>
+同方笔记本的设置方法：
+开机根据提示按F2进入BIOS设置，选择anvanced,然后将OS support设置为UEFI OS 然后保存退出，重启即可。  
+同方的台式机设置方法:  
+H170主板：  
+开机根据提示按DEL进行BISO设置，选择advanced mode然后选择启动，再选择csm(兼容性支持模块），再选择开启CMS中的值为关闭。  
+然后save changes & reset。  
+其他型号的主板：  
+开机根据提示按DEL进入BIOS设置，选择BOOT,选择luanch csm，并且设置其值为disabled.  
+然后save changes & reset。  
+
+  
+硬盘分区必须是gpt格式  
+以UEFI形式安装ubuntu到/dev/sda2  
+esp分区为/dev/sda1  
+程序会根据配置参数自动创建10G的分区，用于安装androidx86  
 
 
 2.
