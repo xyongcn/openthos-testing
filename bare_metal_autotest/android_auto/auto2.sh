@@ -3,7 +3,7 @@
 cd "$(dirname "$0")" 
 CMPATH=`pwd`
 
-ip_linux="192.168.2.17"
+ip_linux="192.168.2.29"
 ip_android="192.168.2.21"
 android_iso_for_test="/root/android_x86.iso_xly_5.1"
 diskpart_for_android="/dev/sda40"
@@ -17,16 +17,12 @@ echo ${ip_linux}
 
 cp  ${android_iso_for_test}  ./android_x86.iso
 
-#fixit
 ####a small bug has fixed
 ssh root@${ip_linux} "rm -rf ${CMPATH}/"
+ssh root@${ip_linux} "mkdir -p  ${CMPATH}/"
 ####a small bug has fixed
 
 ./android_tool.sh ${ip_linux}  partition_disk.sh ${diskpart_for_android}
-
-###after partion_disk.sh need not reboot to mkfs.ext4
-##./android_tool.sh ${ip_linux}  fastboot.sh  ${diskpart_for_android}  reboot_bootloader
-
 
 ./android_tool.sh ${ip_linux}  android_x86_iso_install.sh ${diskpart_for_android} 
 
@@ -46,7 +42,7 @@ ssh root@${ip_linux} "rm -rf ${CMPATH}/"
 
 sleep 180
 
-#read -p "please input the ip_android:" ip_android
+read -p "please input the ip_android:" ip_android
 ####pause press anykey to continue
 echo ${ip_android}
 
