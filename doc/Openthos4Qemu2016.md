@@ -44,3 +44,7 @@ qemu-system-x86_64 -enable-kvm -m 4G -vga std -serial stdio -drive file=android-
 使用以下命令将客户机的5555端口也就是adb要连接的端口转发到主机的12346端口  
 `kvm -m 4G -drive file=android-x86-6.0.raw,format=raw,index=0,media=disk-net nic -net user,hostfwd=tcp::12346-:5555`  
 然后就可以`adb connect localhost:12346`连接到kvm中的安卓系统了   
+
+##结果格式
+路径格式为 基础目录/测试用例名称/测试用例参数/hostname/使用的rootfs/内核的配置选项/编译器/commit号/第几次测试  
+例如 /result/ebizzy/200%-4x-10s/chy-KVM/debian-x86_64.cgz/x86_64-test/gcc-test/test-commit/0/
