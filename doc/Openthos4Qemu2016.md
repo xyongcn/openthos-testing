@@ -47,4 +47,5 @@ qemu-system-x86_64 -enable-kvm -m 4G -vga std -serial stdio -drive file=android-
 
 ##结果格式
 路径格式为 基础目录/测试用例名称/测试用例参数/hostname/使用的rootfs/内核的配置选项/编译器/commit号/第几次测试  
-例如 /result/ebizzy/200%-4x-10s/chy-KVM/debian-x86_64.cgz/x86_64-test/gcc-test/test-commit/0/
+例如 /result/ebizzy/200%-4x-10s/chy-KVM/debian-x86_64.cgz/x86_64-test/gcc-test/test-commit/0/  
+128机器的基础目录为 /mnt/freenas/result
