@@ -1,9 +1,13 @@
+<!-- 对button 进程form 和action 处理，使用get方法，可以使得URL中出现参数-->
 <html>
 <head>
   <meta charset="UTF-8">
   <title>Android LKP结果展示</title>
  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script language="JavaScript">
+
+
+
 
 <?php
 function my_scandir($dir)
@@ -276,7 +280,10 @@ function button_click(aid)
 
   var url=A.value+'/'+B.value+'/'+C.value+'/'+D.value+'/'+E.value+'/'+F.value+'/'+G.value+'/'+H.value+'/';
   url=url.replace(/%/g,"%25")
+/*
   url="http://192.168.2.128/result/"+url
+*/
+  url="result/"+url
   console.log(url);
    
   document.getElementById("iframepage").src=url;
@@ -292,7 +299,10 @@ function compile_button_click(aid)
 
   var url=A.value;
   url=url.replace(/%/g,"%25")
+/*
   url="http://192.168.2.128/compile/"+url
+*/
+  url="compile/"+url
   console.log(url);
    
   document.getElementById("iframepage").src=url;
@@ -307,7 +317,10 @@ function summary_button_click(aid)
 
   var url=A.value;
   url=url.replace(/%/g,"%25")
+/*
   url="http://192.168.2.128/summary/"+url
+*/
+  url="summary/"+url
   console.log(url);
    
   document.getElementById("iframepage").src=url;
@@ -354,6 +367,7 @@ ifm.contentDocument;
 
 </br>
 <h3>testcase信息展示:</h3>
+<form action="testcase_form.php" method="get">
 testcase <select id="testcase" name="testcase"  onchange="changeselect(this.id)">
 </select>
 
@@ -387,14 +401,17 @@ run <select id="run"  name="run"onchange="changeselect(this.id)">
 
 </select>
 </br>
-<button onclick="button_click()">get result</button>
+<input type="submit" value="Submit">
+</form>
 
 </br>
 <h3> compile 信息展示</h3>
+<form action="compile_form.php" method="get">
 compile  <select id="compile" name="compile"  onchange="changeselect(this.id)">
 </select>
 </br>
-<button onclick="compile_button_click()">get compile</button>
+<input type="submit" value="Submit">
+</form>
 
 
 
@@ -402,23 +419,17 @@ compile  <select id="compile" name="compile"  onchange="changeselect(this.id)">
 
 </br>
 <h3> summary 信息展示</h3>
+<form action="summary_form.php" method="get">
 summary  <select id="summary" name="summary"  onchange="changeselect(this.id)">
 </select>
 
 </br>
-<button onclick="summary_button_click()">get summary</button>
-
+<input type="submit" value="Submit">
+</form>
 
 </br>
 
 
-<h3>您要查看的结果如下：</h3>
-
-<div id="bodyframe" style="VISIBILITY: hidden">  
- <iframe src=""
- marginheight="0" marginwidth="0" frameborder="0" scrolling="no" width=100% height=100% id="iframepage" name="iframepage" onLoad="iFrameHeight()" ></iframe>
-
-</div>
 
 
 </body>
