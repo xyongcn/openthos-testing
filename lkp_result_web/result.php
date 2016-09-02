@@ -1,7 +1,7 @@
 <!-- 对button 进程form 和action 处理，使用get方法，可以使得URL中出现参数-->
 <html>
 <head>
-  <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Android LKP结果展示</title>
  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script language="JavaScript">
