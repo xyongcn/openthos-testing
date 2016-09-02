@@ -128,7 +128,13 @@ diskpart_for_android="/dev/sda40"【PCN上面的要安装android的目标分区�
 例如重装android系统,启动到android，安装一个apk,启动apk,测试用例自己记录测试中间结果到约定目录，重启android,测试完毕。
 5.  本测试框架只提供机制不提供策略，如果要加新的测试过程，只需要仿照auto2.sh脚本进行修改即可。
 
+##测试结果展示
+cd  lkp_result_web 
 
+./creat_symbol.sh 
+
+
+在浏览器输入http://localhost/result.php查看结果
 ##BUG REPORT
 如有bug欢迎反馈，讨论、交流。
 
