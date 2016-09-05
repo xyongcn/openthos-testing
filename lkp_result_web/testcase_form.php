@@ -27,7 +27,7 @@
 ?>
 
 "
- marginheight="0" marginwidth="0" frameborder="0" scrolling="no" width=100% height=100% id="iframepage" name="iframepage" onLoad="iFrameHeight()" ></iframe>
+ marginheight="0" marginwidth="0" frameborder="0"  width=100% height=100% id="iframepage" name="iframepage" onLoad="iFrameHeight()" ></iframe>
 
 </div>
 
