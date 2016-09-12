@@ -59,22 +59,39 @@ function my_scandir2($dir)
 
 
 
-
+function  my_sort(&$a)
+{
+	if(count($a)>=1)
+	{
+	ksort($a);
+	foreach($a as $x=>&$x_value)
+	{
+	     my_sort($x_value);
+	}
+	}
+}
 
 
 $aaa=my_scandir("/mnt/freenas/result");
+
+my_sort($aaa);
+
+
+
 echo "    var Place_dict = ";
 echo json_encode($aaa,JSON_FORCE_OBJECT|JSON_UNESCAPED_SLASHES);
 echo ";";
 
 
 $jcompile=my_scandir2("/mnt/freenas/compile");
+ksort($jcompile);
 echo "    var compile_dict = ";
 echo json_encode($jcompile,JSON_FORCE_OBJECT|JSON_UNESCAPED_SLASHES);
 echo ";";
 
 
 $jsummary=my_scandir2("/mnt/freenas/summary");
+ksort($jsummary);
 echo "    var summary_dict = ";
 echo json_encode($jsummary,JSON_FORCE_OBJECT|JSON_UNESCAPED_SLASHES);
 echo ";";
