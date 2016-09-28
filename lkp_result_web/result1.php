@@ -4,27 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Android LKP结果展示</title>
  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-
-
-  <!--   <script type="text/javascript" src="jquery-1.11.3.min.js"></script> -->
-    <script type="text/javascript" src="handlebars-v3.0.3.js"></script>
-
-
-    <script type="text/javascript" src="test.js"></script>
-
-
-
-<?php
- //system('./b.sh >./test.js');
-// $test = "ls /tmp";
- $test = "./b.sh >./test.js";
-$last = system($test);
-//print "last: $last\n";
-?>
-
-
-
 <script language="JavaScript">
+
+
 
 
 <?php
@@ -81,7 +63,7 @@ function  my_sort(&$a)
 {
 	if(count($a)>=1)
 	{
-	krsort($a);
+	ksort($a);
 	foreach($a as $x=>&$x_value)
 	{
 	     my_sort($x_value);
@@ -102,14 +84,14 @@ echo ";";
 
 
 $jcompile=my_scandir2("/mnt/freenas/compile");
-krsort($jcompile);
+ksort($jcompile);
 echo "    var compile_dict = ";
 echo json_encode($jcompile,JSON_FORCE_OBJECT|JSON_UNESCAPED_SLASHES);
 echo ";";
 
 
 $jsummary=my_scandir2("/mnt/freenas/summary");
-krsort($jsummary);
+ksort($jsummary);
 echo "    var summary_dict = ";
 echo json_encode($jsummary,JSON_FORCE_OBJECT|JSON_UNESCAPED_SLASHES);
 echo ";";
@@ -397,39 +379,6 @@ ifm.contentDocument;
 <body onload="javascript:all_init();">
 
 <h2>android lkp 结果展示:</h2>
-
-
-<h3>testcase信息展示[筛选法]</h3>
-
-<div id="entry" class="ui-widget">
-
-</div>
-<div id="result"></div>
-
-<script id="entry-template"  type="text/x-handlebars-template">
-    <div id="1div">
-    <label>筛选:</label>
-    <select name="select_label"  class="easyui-combobox"  name="state" id="1" onchange="click_select_label(this)" >
-        {{#with init_tags}}
-        {{#each this}}
-        <option value="{{this}}" >{{this}}</option>
-        {{/each}}
-        {{/with}}
-
-    </select>
-    </div>
-</script>
-
-<script id="select-template" type="text/x-handlebars-template">
-    {{#with tags}}
-    {{#each this}}
-    <option value="{{this}}" >{{this}}</option>
-
-    {{/each}}
-    {{/with}}
-</script>
-
-
 
 
 
