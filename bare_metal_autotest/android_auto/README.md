@@ -1,6 +1,16 @@
 # openthos在bare-metal上的自动测试
 ##使用前必看
 一定要注意的事项！！！被测试的机器一定要以UEFI形式和GPT磁盘格式安装ubuntu 15.10版本以上的64位操作系统，安装系统时选择手动分区，不要把磁盘空间全部占满了，需要留30到40g的空余空间。否则后面的工作无法进行！！！
+所有电脑上的ubuntu系统新安装完毕以后root账户的密码没有设定，请在当前账户下面执行 
+
+
+sudo su【回车】#切换到root账户 
+
+passwd【回车】#修改root账户的密码 
+
+注：sudo passwd root【回车】也可以修改root账户的密码【相关知识请百度搜索学习，这里就不详细描述了】
+
+然后下面的所有在ubuntu上面的操作都请在root账户下面操作，以免出现权限不足的麻烦。
 ##测试对象，以及设计原理说明
 * PC2  
 * PC2为测试对象,上面安装了linux和android_x86双系统  
@@ -45,10 +55,6 @@ esp分区为/dev/sda1
 程序会根据配置参数自动创建10G的分区，用于安装androidx86  
 
 
-2.
-修改root密码
-sudo su   
-passwd  
 
 3.
 apt-get install squashfs-tools【安装 squashfs-tools】    
