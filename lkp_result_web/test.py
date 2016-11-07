@@ -16,26 +16,31 @@ def getDir(path):
 
     file_name_list=[]
     for parent,dirnames,filenames in os.walk(path):
+#        print(parent)
+#        print(dirnames)
+#        print(filenames)
         for dirname in dirnames:
             if dirname not in tags:
                 tags.append(dirname)
 
         for filename in filenames:
-            shortname=filename
-
+           
+            
             if filename not in tags:
-
-                tags.append(shortname)
-                detail[shortname]=[]
+                tags.append(filename)
+            if filename not in file_name_list:
+                file_name_list.append(filename)
+                detail[filename]=[]
                 temp={}
                 temp["path"]=os.path.join(parent,filename)[20:]
                 temp["tags"]=temp["path"].split('/')[1:]
-                detail[shortname].append(temp)
+                detail[filename].append(temp)
             else:
+                
                 temp={}
                 temp["path"]=os.path.join(parent,filename)[20:]
                 temp["tags"]=temp["path"].split('/')[1:]
-                detail[shortname].append(temp)
+                detail[filename].append(temp)
 
 
     temp=[]
