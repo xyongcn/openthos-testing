@@ -42,7 +42,7 @@ ssh root@${ip_linux} "mkdir -p  ${CMPATH}/"
 
 sleep 180
 
-read -p "please input the ip_android:" ip_android
+#read -p "please input the ip_android:" ip_android
 ####pause press anykey to continue
 echo ${ip_android}
 
