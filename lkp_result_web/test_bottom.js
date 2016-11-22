@@ -43,7 +43,11 @@
        temp.push(value.path);
  });
     temp.sort().reverse();
-$.each(temp,function(n,value) {s+="</br><a href=./result"+value+">result"+value+"</a>"});
+   
+$.each(temp,function(n,value) {
+ value=value.replace(/%/g,"%25");  
+
+s+="</br><a href=./result"+value+">result"+value+"</a>"});
 
 //            $.each(file,function(n,value) {s+="</br><a href=http://192.168.2.128/result/"+value.path+">result"+value.path+"</a>"});
             document.getElementById("result").innerHTML =s;
@@ -165,6 +169,7 @@ function gen_next_list (select_ids ,context){
             result.push(next[i]);
         }
     }
+    
     // 输出当前筛选条件下的结果。
     var s="";
       var temp=[];
@@ -172,10 +177,15 @@ function gen_next_list (select_ids ,context){
        temp.push(value.path);
  });
     temp.sort().reverse();
-$.each(temp,function(n,value) {s+="</br><a href=./result"+value+">result"+value+"</a>"});
+$.each(temp,function(n,value) {
+  value=value.replace(/%/g,"%25");
+s+="</br><a href=./result"+value+">result"+value+"</a>"});
 //$.each(file,function(n,value) {s+="</br><a href=http://192.168.2.128/result/"+value.path+">result"+value.path+"</a>"});
     document.getElementById("result").innerHTML =s;
-    return result.sort().reverse();
+      result.sort().reverse();
+     result.unshift("---Please Select---"); 
+     
+    return result;
 }
 /***
  * 判断子集的函数

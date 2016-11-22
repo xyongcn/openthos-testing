@@ -42,16 +42,14 @@ def getDir(path):
                 temp["tags"]=temp["path"].split('/')[1:]
                 detail[filename].append(temp)
 
-
     temp=[]
     for tag in tags:
         if((tag != 'var') and (tag != 'www') and (tag != 'html') and (tag != 'result')):
             temp.append(tag)
 
-          
     temp.sort()
     temp.reverse()
-    
+    temp.insert(0,"---Please Select---") 
     return {"init_tags":temp,"detail":detail}
 
 if __name__ == '__main__':
