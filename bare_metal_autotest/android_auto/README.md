@@ -33,6 +33,12 @@ ip_android="192.168.2.58"【PCN上面的android IP地址】
 * 工作原理图  
 ![Aaron Swartz](https://raw.githubusercontent.com/xyongcn/openthos-testing/master/bare_metal_autotest/android_auto/android_x86%E7%9C%9F%E5%AE%9E%E6%9C%BA%E5%99%A8%E8%87%AA%E5%8A%A8%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6.JPG)
 
+
+##PC1初始化环境
+以root 登录，执行以下命令  
+ssh-keygen  
+生成公钥私钥对，供后续ssh公钥登录使用。
+
 ##PC2初始化环境
 
 1.  对于机箱前面板上有SD读卡器的台式机，需要打开机箱，从主板上拔掉SD卡读卡器的USB线，否则会造成grub中硬盘编号为hd1，使得androidx86引导失败  
@@ -78,7 +84,6 @@ service ssh restart
 ##PC2的自动化测试【在PC1上操作】
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
-ssh-keygen  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc2的ip地址]  
 
 1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
@@ -96,7 +101,6 @@ diskpart_for_android="/dev/sda40"【PC2上面的要安装android的目标分区�
 ##PC3的自动化测试【在PC1上操作】
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
-ssh-keygen  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc3的ip地址]  
 
 1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
@@ -114,7 +118,6 @@ diskpart_for_android="/dev/sda40"【PC3上面的要安装android的目标分区�
 ##PCN(N>=2)的自动化测试【在PC1上操作】
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
-ssh-keygen  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pcN的ip地址]  
 
 1.  将git中bare_metal_autotest下面的android_auto/目录复制到PC1上的任意目录下面
