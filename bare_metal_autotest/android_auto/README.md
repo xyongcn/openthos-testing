@@ -10,6 +10,9 @@ passwd【回车】#修改root账户的密码
 
 注：sudo passwd root【回车】也可以修改root账户的密码【相关知识请百度搜索学习，这里就不详细描述了】
 
+vim /etc/hostname
+修改各个机器的hostname为不同的名字。不要重复。
+
 然后下面的所有在ubuntu上面的操作都请在root账户下面操作，以免出现权限不足的麻烦。
 ##测试对象，以及设计原理说明
 * PC2  
