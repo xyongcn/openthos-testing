@@ -3,10 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Android LKP结果展示</title>
- <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
-
-  <!--   <script type="text/javascript" src="jquery-1.11.3.min.js"></script> -->
+   <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="handlebars-v3.0.3.js"></script>
 
 
@@ -76,6 +74,36 @@ function my_scandir2($dir)
 }
 
 
+function my_scandir3($dir)
+{
+    $files=array();
+    if(is_dir($dir))
+    {
+        if($handle=opendir($dir))
+        {
+            while(($file=readdir($handle))!==false)
+            {
+                if($file!="." && $file!="..")
+                {
+                    if(is_dir($dir."/".$file))
+                    {
+                        $test =  "./lkp_web_oto/getfilelist.py -f ".$file;
+                        $last = system($test);
+                        $test =  "./lkp_web_oto/insertdata.py -f ".$file;
+                        $last = system($test);
+                        $files[$file]=$file;
+                    }
+                }
+            }
+            closedir($handle);
+            return $files;
+        }
+    }
+}
+
+
+
+
 
 function  my_sort(&$a)
 {
@@ -108,6 +136,16 @@ echo json_encode($jcompile,JSON_FORCE_OBJECT|JSON_UNESCAPED_SLASHES);
 echo ";";
 
 
+$jcsv=my_scandir3("/mnt/freenas/result");
+krsort($jcsv);
+echo "    var csv_dict = ";
+echo json_encode($jcsv,JSON_FORCE_OBJECT|JSON_UNESCAPED_SLASHES);
+echo ";";
+
+
+
+
+
 $jsummary=my_scandir2("/mnt/freenas/summary");
 krsort($jsummary);
 echo "    var summary_dict = ";
@@ -119,10 +157,31 @@ echo ";";
 
 function all_init()
 {
+ csv_changeselect("init");
  changeselect("init");
  compile_changeselect("init");
  summary_changeselect("init");
 }
+
+
+function csv_changeselect(aid)
+{
+
+
+
+ if(aid=="init")
+  {
+      for(acsv in csv_dict){
+
+        var text = "<option>"+acsv+"</option>";
+                $("#benchmarks").append(text);
+        console.log(text);
+      }
+  }
+
+
+}
+
 
 
 
@@ -397,6 +456,18 @@ ifm.contentDocument;
 <body onload="javascript:all_init();">
 
 <h2>android lkp 结果展示:</h2>
+
+
+<h3>csv 曲线<h3>
+  <form action="./lkp_web_oto/getMETRIC.php" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+<select id="benchmarks" name="benchmarks" >
+
+                        </select>
+
+                        <input class="btn btn-success" type="submit" value="SUBMIT" >
+                        <input class="btn btn-inverse" type="reset" value="CLEAR" >
+                        </form>
+
 
 
 <h3>testcase信息展示[筛选法]</h3>
