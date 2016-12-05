@@ -14,4 +14,4 @@ doc目录
 
 [Openthos4H170pro2016.md](https://github.com/xyongcn/openthos-testing/blob/master/doc/Openthos4H170pro2016.md) 真实机器H170pro上的自动测试帮助文档 
 
-[测试结果web展示](https://github.com/xyongcn/openthos-testing/blob/master/lkp_result_web/README.md) 测试结果web展现帮助文档
+[测试结果web展示](https://github.com/xyongcn/openthos-testing/blob/master/lkp_result_web/README.md) 测试结果web展现帮助文档，已经停止维护，最新代码迁移至(https://github.com/openthos/testing-analysis/tree/master/lkp_result_web)
