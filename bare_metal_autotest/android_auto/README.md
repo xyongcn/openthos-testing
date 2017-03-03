@@ -33,7 +33,7 @@ ip_android="192.168.2.58"【PCN上面的android IP地址】
 
 
 * 工作原理图  
-![Aaron Swartz](https://raw.githubusercontent.com/xyongcn/openthos-testing/master/bare_metal_autotest/android_auto/android_x86%E7%9C%9F%E5%AE%9E%E6%9C%BA%E5%99%A8%E8%87%AA%E5%8A%A8%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6.JPG)
+![](android_x86真实机器自动测试框架.JPG)
 
 
 ##PC1初始化环境
