@@ -2,7 +2,7 @@
 
 Android测试系统由一台服务器（PC1）和若干台测试机器（PC2到PC5）组成。它的工作流程包括编译、部署、测试和分析四个步骤。"编译"是指，检查到有代码更新后，服务器从源代码仓库下载整个Android系统的内核、应用框架和应用软件的源代码，进行完整的编译，生成系统安装映像文件。"部署"是指，利用已预装了一个Linux系统的测试机器上，利用双系统部署方法安装Android系统并设置自动启动Android系统。"测试"是指，在服务器的控制下，在测试机器上执行用户选择测试用例，保存测试数据，并把测试数据上传回服务器。”分析“是指，服务器对测试结果进行分析，并通过web页面方式把分析结果展现给用户。
 
-##使用前必看
+## 使用前必看
 一定要注意的事项！！！被测试的机器一定要以UEFI形式和GPT磁盘格式安装ubuntu 15.10版本以上的64位操作系统，安装系统时选择手动分区，不要把磁盘空间全部占满了，需要留30到40g的空余空间。否则后面的工作无法进行！！！
 所有电脑上的ubuntu系统新安装完毕以后root账户的密码没有设定，请在当前账户下面执行 
 
@@ -39,12 +39,12 @@ ip_android="192.168.2.58"【PCN上面的android IP地址】
 ![](android_x86真实机器自动测试框架.JPG)
 
 
-##PC1初始化环境
+## PC1初始化环境
 以root 登录，执行以下命令  
 ssh-keygen  
 生成公钥私钥对，供后续ssh公钥登录使用。
 
-##PC2初始化环境
+## PC2初始化环境
 
 1.  对于机箱前面板上有SD读卡器的台式机，需要打开机箱，从主板上拔掉SD卡读卡器的USB线，否则会造成grub中硬盘编号为hd1，使得androidx86引导失败  
 2.  安装64位ubuntu（要求15.10及以上，因为14.04以前的版本中fdisk不支持操作gpt格式的磁盘）  
@@ -86,7 +86,7 @@ service ssh restart
 6. PC3,4,5初始化方法同PC2
 
 
-##PC2的自动化测试【在PC1上操作】
+## PC2的自动化测试【在PC1上操作】
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc2的ip地址]  
@@ -103,7 +103,7 @@ diskpart_for_android="/dev/sda40"【PC2上面的要安装android的目标分区�
 3. 进入/root/android_auto_2
 运行./auto2.sh
 
-##PC3的自动化测试【在PC1上操作】
+## PC3的自动化测试【在PC1上操作】
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pc3的ip地址]  
@@ -120,7 +120,7 @@ diskpart_for_android="/dev/sda40"【PC3上面的要安装android的目标分区�
 运行./auto3.sh
 
 
-##PCN(N>=2)的自动化测试【在PC1上操作】
+## PCN(N>=2)的自动化测试【在PC1上操作】
 1.  在ubuntu部署ssh无密码登录  
 以root 登录，执行以下命令  
 ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.200.10[pcN的ip地址]  
@@ -136,19 +136,19 @@ diskpart_for_android="/dev/sda40"【PCN上面的要安装android的目标分区�
 进入/root/android_auto_N
 运行./autoN.sh
 
-##说明 
+## 说明 
 4.  autoN.sh是一个测试过程的举例，
 演示了本目录中的各个脚本提供的服务如何使用。以及如何使用这些服务完成一个系统安装，app运行测试。
 例如重装android系统,启动到android，安装一个apk,启动apk,测试用例自己记录测试中间结果到约定目录，重启android,测试完毕。
 5.  本测试框架只提供机制不提供策略，如果要加新的测试过程，只需要仿照auto2.sh脚本进行修改即可。
 
-##测试结果展示
+## 测试结果展示
 cd  lkp_result_web 
 
 ./creat_symbol.sh ###这个脚本一定要执行，尤其是给html目录增加权限，必须进行。
 
 
 在浏览器输入http://localhost/result.php查看结果
-##BUG REPORT
+## BUG REPORT
 如有bug欢迎反馈，讨论、交流。
 
